@@ -10,6 +10,9 @@ import path from "path";
 import AuthRoute from "./routes/auth.js";
 import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
+import { verifyToken } from "./middleware/auth.js";
+import UserRoute from "./routes/users.js"
+
 
 
 // Configuraion-----------------------------------------------------------
@@ -20,7 +23,7 @@ dotenv.config();
 
 const app = express();
 app.use(bodyParser.json({ limit: "30mb", extented:true }));
-app.use(bodyParser.urlencoded({ extented:true, limit: "30mb" }));
+app.use(bodyParser.urlencoded({ extended:true, limit: "30mb" }));
 app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -61,3 +64,5 @@ mongoose
 app.post("/auth/register", upload.single("picture"), register);
 
 app.use("/auth", AuthRoute);
+app.use("/user",UserRoute);
+
