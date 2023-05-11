@@ -13,8 +13,10 @@ import { register } from "./controllers/auth.js";
 import { verifyToken } from "./middleware/auth.js";
 import userRoute from "./routes/users.js"
 import postRoute from './routes/posts.js'
-import createPost from "./controllers/posts.js"
-
+import {createPost} from "./controllers/posts.js"
+import User from "./models/user.js";
+import Post from "./models/post.js";
+import { users, posts } from "./data/index.js";
 
 
 // Configuraion-----------------------------------------------------------
@@ -55,6 +57,7 @@ mongoose
   })
   .then(
     app.listen(PORT, () => {
+   
       console.log(`server started at ${PORT}`);
     })
   )
@@ -72,5 +75,4 @@ app.post("/post",upload.single("picture"),createPost)
 app.use("/auth", authRoute);
 app.use("/user",userRoute);
 app.use("/posts",postRoute)
-
 
