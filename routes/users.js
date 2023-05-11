@@ -16,7 +16,7 @@ Router.get("/:id/friends",verifyToken,getUserFriends);
 
 // update requirements-----------------------------------
 
-Router.patch("/:id/:friendsId",addRemoveFriends);
+Router.patch("/:id/:friendsId",verifyToken,addRemoveFriends);
 
 export default Router;
 

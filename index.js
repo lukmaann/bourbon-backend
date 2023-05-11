@@ -7,11 +7,13 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
-import AuthRoute from "./routes/auth.js";
+import authRoute from "./routes/auth.js";
 import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import { verifyToken } from "./middleware/auth.js";
-import UserRoute from "./routes/users.js"
+import userRoute from "./routes/users.js"
+import postRoute from './routes/posts.js'
+import createPost from "./controllers/posts.js"
 
 
 
@@ -62,7 +64,13 @@ mongoose
 
 // Route----------------------------------------------------------------------------
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/post",upload.single("picture"),createPost)
 
-app.use("/auth", AuthRoute);
-app.use("/user",UserRoute);
+
+
+// -----------------------------------------------------------------------------------
+app.use("/auth", authRoute);
+app.use("/user",userRoute);
+app.use("/posts",postRoute)
+
 
