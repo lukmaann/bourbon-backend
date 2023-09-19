@@ -5,7 +5,6 @@ import cors from "cors";
 import multer from "multer";
 import dotenv from "dotenv";
 import helmet from "helmet";
-import morgan from "morgan";
 import path from "path";
 import authRoute from "./routes/auth.js";
 import { fileURLToPath } from "url";
